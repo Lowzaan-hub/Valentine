@@ -7,19 +7,19 @@
 <style>
     body {
         margin: 0;
-        padding: 20px;
+        padding: 0;
         font-family: 'Georgia', serif;
         background: #f0e5ff;
         color: #4a0e6a;
-        text-align: center;
         min-height: 100vh;
-        overflow-y: auto; /* ENABLE scrolling */
+        text-align: center;
         position: relative;
+        overflow-y: auto; /* allow vertical scrolling */
     }
 
     h1 {
         font-size: 2rem;
-        margin: 40px 0 30px 0;
+        margin: 40px 20px 20px 20px;
     }
 
     .buttons-container {
@@ -28,8 +28,9 @@
         align-items: center;
         gap: 20px;
         flex-wrap: wrap;
-        margin-bottom: 200px; /* extra space so scrolling works */
-        position: relative; /* for the no button to move */
+        margin: 20px 0 100px 0; /* extra bottom margin to allow scroll */
+        position: relative;
+        height: 100px; /* container height for button movement */
     }
 
     .btn {
@@ -38,17 +39,17 @@
         border: none;
         border-radius: 10px;
         cursor: pointer;
+        background-color: #b19cd9; /* soft purple */
         color: white;
-        transition: all 0.2s ease;
-        position: relative;
+        transition: transform 0.2s;
+    }
+
+    .btn.no {
+        background-color: #ff6961; /* soft red */
     }
 
     .btn.yes {
         background-color: #87cefa; /* baby blue */
-    }
-
-    .btn.no {
-        background-color: #b19cd9; /* soft purple */
     }
 
     /* Responsive */
@@ -72,20 +73,22 @@
 
 <script>
     const noBtn = document.querySelector('.btn.no');
+    const container = document.querySelector('.buttons-container');
 
     noBtn.addEventListener('mouseenter', () => {
-        // get viewport dimensions
-        const vw = window.innerWidth - noBtn.offsetWidth;
-        const vh = window.innerHeight - noBtn.offsetHeight;
+        const containerRect = container.getBoundingClientRect();
+        const btnWidth = noBtn.offsetWidth;
+        const btnHeight = noBtn.offsetHeight;
 
-        // random position within viewport
-        const x = Math.random() * vw;
-        const y = Math.random() * vh;
+        // random position inside container
+        const x = Math.random() * (containerRect.width - btnWidth);
+        const y = Math.random() * (containerRect.height - btnHeight);
 
-        noBtn.style.position = 'fixed'; // use fixed so it moves freely
+        noBtn.style.position = 'absolute';
         noBtn.style.left = `${x}px`;
         noBtn.style.top = `${y}px`;
     });
 </script>
 </body>
 </html>
+
