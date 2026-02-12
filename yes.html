@@ -7,7 +7,7 @@
 <style>
     body {
         margin: 0;
-        height: 100vh;
+        min-height: 100vh;
         background: #f0e5ff;
         font-family: 'Georgia', serif;
         text-align: center;
@@ -15,12 +15,14 @@
         color: #4a0e6a;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start; /* message stays at top */
         align-items: center;
+        padding-top: 50px; /* space from top */
     }
     .message {
         padding: 20px;
         z-index: 10;
+        max-width: 90%;
     }
     h1 {
         font-size: 2rem;
@@ -39,13 +41,64 @@
     @keyframes fall {
         to { transform: translateY(110vh); }
     }
-    .images {
+    .image-container {
+        display: flex;
+        justify-content: center; /* centers horizontally */
+        align-items: center;     /* centers vertically in container */
         margin-top: 30px;
+        width: 100%;
     }
-    .images img {
+    .image-container img {
         max-width: 80%;
         width: auto;
         border-radius: 15px;
         opacity: 0;
-        animation: fadeFloat 3s forwar
+        animation: fadeFloat 3s forwards;
+    }
+    @keyframes fadeFloat {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    audio {
+        margin-top: 20px;
+        width: 80%;
+        max-width: 400px;
+        border-radius: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="message">
+    <h1>She said yes… 🌹</h1>
+    <p>
+        and in that moment, my whole world smiled.<br><br>
+        Thank you for choosing me, today and always.<br><br>
+        <strong>I love you endlessly.</strong> ❤️
+    </p>
+</div>
+
+<div class="image-container">
+    <img src="Image1.jpeg" alt="Us Image 1">
+</div>
+
+<!-- Audio will autoplay and loop -->
+<audio autoplay loop controls>
+    <source src="LoveOnTheBrain.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+function createRose() {
+    const rose = document.createElement("div");
+    rose.classList.add("rose");
+    rose.innerHTML = "🌹";
+    rose.style.left = Math.random() * 100 + "vw";
+    rose.style.animationDuration = (3 + Math.random() * 5) + "s";
+    document.body.appendChild(rose);
+    setTimeout(() => { rose.remove(); }, 8000);
+}
+setInterval(createRose, 300);
+</script>
+</body>
+</html>
 
