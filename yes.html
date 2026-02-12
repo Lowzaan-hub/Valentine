@@ -7,47 +7,53 @@
 <style>
     body {
         margin: 0;
-        min-height: 100vh;
+        height: 100vh;
         background: #f0e5ff;
         font-family: 'Georgia', serif;
-        text-align: center;
-        overflow: hidden;
         color: #4a0e6a;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start; /* message stays at top */
+        justify-content: space-between; /* space between message, image, audio */
         align-items: center;
-        padding-top: 50px; /* space from top */
+        overflow: hidden;
+        text-align: center;
     }
+
     .message {
         padding: 20px;
-        z-index: 10;
         max-width: 90%;
+        z-index: 10;
     }
+
     h1 {
         font-size: 2rem;
         margin-bottom: 20px;
     }
+
     p {
         font-size: 1.2rem;
         line-height: 1.6;
     }
+
     .rose {
         position: fixed;
         top: -50px;
         font-size: 24px;
         animation: fall linear infinite;
     }
+
     @keyframes fall {
         to { transform: translateY(110vh); }
     }
+
     .image-container {
         display: flex;
-        justify-content: center; /* centers horizontally */
-        align-items: center;     /* centers vertically in container */
-        margin-top: 30px;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1; /* takes remaining vertical space */
         width: 100%;
     }
+
     .image-container img {
         max-width: 80%;
         width: auto;
@@ -55,12 +61,14 @@
         opacity: 0;
         animation: fadeFloat 3s forwards;
     }
+
     @keyframes fadeFloat {
         0% { opacity: 0; transform: translateY(20px); }
         100% { opacity: 1; transform: translateY(0); }
     }
+
     audio {
-        margin-top: 20px;
+        margin-bottom: 20px;
         width: 80%;
         max-width: 400px;
         border-radius: 10px;
@@ -68,24 +76,24 @@
 </style>
 </head>
 <body>
-<div class="message">
-    <h1>She said yes… 🌹</h1>
-    <p>
-        and in that moment, my whole world smiled.<br><br>
-        Thank you for choosing me, today and always.<br><br>
-        <strong>I love you endlessly.</strong> ❤️
-    </p>
-</div>
+    <div class="message">
+        <h1>She said yes… 🌹</h1>
+        <p>
+            and in that moment, my whole world smiled.<br><br>
+            Thank you for choosing me, today and always.<br><br>
+            <strong>I love you endlessly.</strong> ❤️
+        </p>
+    </div>
 
-<div class="image-container">
-    <img src="Image1.jpeg" alt="Us Image 1">
-</div>
+    <div class="image-container">
+        <img src="Image1.jpeg" alt="Us Image 1">
+    </div>
 
-<!-- Audio will autoplay and loop -->
-<audio autoplay loop controls>
-    <source src="LoveOnTheBrain.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
+    <!-- Audio will autoplay and loop -->
+    <audio autoplay loop controls>
+        <source src="LoveOnTheBrain.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
 <script>
 function createRose() {
