@@ -11,11 +11,10 @@
         font-family: 'Georgia', serif;
         background: #f0e5ff;
         color: #4a0e6a;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
         min-height: 100vh;
+        text-align: center;
+        position: relative;
+        overflow-y: auto; /* allow vertical scrolling */
     }
 
     h1 {
@@ -28,8 +27,10 @@
         justify-content: center;
         align-items: center;
         gap: 20px;
-        flex-wrap: wrap; /* wrap on small screens */
-        margin: 20px 0;
+        flex-wrap: wrap;
+        margin: 20px 0 100px 0; /* extra bottom margin to allow scroll */
+        position: relative;
+        height: 100px; /* container height for button movement */
     }
 
     .btn {
@@ -40,21 +41,18 @@
         cursor: pointer;
         background-color: #b19cd9; /* soft purple */
         color: white;
-        position: relative;
         transition: transform 0.2s;
     }
 
-    .btn.no:hover {
-        position: absolute;
-        top: calc(50% - 25px);
-        left: calc(50% - 50px + (Math.random() * 100 - 50)px);
+    .btn.no {
+        background-color: #ff6961; /* soft red */
     }
 
     .btn.yes {
         background-color: #87cefa; /* baby blue */
     }
 
-    /* Responsive text */
+    /* Responsive */
     @media (max-width: 480px) {
         h1 {
             font-size: 1.5rem;
@@ -75,11 +73,20 @@
 
 <script>
     const noBtn = document.querySelector('.btn.no');
+    const container = document.querySelector('.buttons-container');
+
     noBtn.addEventListener('mouseenter', () => {
-        // move the button to a random position within viewport
-        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-        noBtn.style.transform = `translate(${x - noBtn.offsetLeft}px, ${y - noBtn.offsetTop}px)`;
+        const containerRect = container.getBoundingClientRect();
+        const btnWidth = noBtn.offsetWidth;
+        const btnHeight = noBtn.offsetHeight;
+
+        // random position inside container
+        const x = Math.random() * (containerRect.width - btnWidth);
+        const y = Math.random() * (containerRect.height - btnHeight);
+
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
     });
 </script>
 </body>
