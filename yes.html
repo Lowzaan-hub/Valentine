@@ -8,119 +8,108 @@
     html, body {
         margin: 0;
         padding: 0;
-        height: 100%;
-        overflow: hidden; /* no scrolling */
-        background: #f0e5ff;
+        min-height: 100%;
         font-family: 'Georgia', serif;
+        background: #f0e5ff;
         color: #4a0e6a;
-    }
-
-    body {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
         text-align: center;
-        padding: 0 10px;
+        overflow-y: auto; /* allow scrolling */
     }
 
     .message {
-        padding: 10px 0;
+        padding: 20px;
         max-width: 90%;
-        flex-shrink: 0;
+        margin: 0 auto;
     }
 
     h1 {
-        font-size: 1.8rem;
-        margin-bottom: 10px;
+        font-size: 2rem;
+        margin-bottom: 15px;
     }
 
     p {
-        font-size: 1rem;
-        line-height: 1.4;
-    }
-
-    .rose {
-        position: fixed;
-        top: -50px;
-        font-size: 20px;
-        animation: fall linear infinite;
-        pointer-events: none; /* roses won’t block clicks */
-    }
-
-    @keyframes fall {
-        to { transform: translateY(110vh); }
+        font-size: 1.1rem;
+        line-height: 1.5;
     }
 
     .image-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-grow: 1;
+        margin: 20px auto;
         width: 100%;
-        padding: 5px;
     }
 
     .image-container img {
         max-width: 90%;
-        max-height: 100%;
+        height: auto;
         border-radius: 15px;
         opacity: 0;
-        animation: fadeFloat 3s forwards;
-        object-fit: contain; /* ensures image scales without cropping */
+        animation: fadeFloat 2s forwards;
+        object-fit: contain;
     }
 
     @keyframes fadeFloat {
-        0% { opacity: 0; transform: translateY(10px); }
+        0% { opacity: 0; transform: translateY(20px); }
         100% { opacity: 1; transform: translateY(0); }
     }
 
     audio {
-        margin-bottom: 10px;
         width: 90%;
         max-width: 350px;
         border-radius: 10px;
-        flex-shrink: 0;
+        margin: 20px auto 40px auto;
+        display: block;
     }
 
-    /* Mobile-specific tweaks */
+    .rose {
+        position: fixed;
+        top: -50px;
+        font-size: 24px;
+        animation: fall linear infinite;
+        pointer-events: none;
+    }
+
+    @keyframes fall {
+        to { transform: translateY(110vh); }
+    }
+
+    /* Mobile adjustments */
     @media (max-width: 480px) {
         h1 {
             font-size: 1.5rem;
         }
         p {
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
         audio {
             width: 95%;
         }
-    }
-
-    @media (max-height: 600px) {
-        .image-container img {
-            max-height: 50vh; /* make image smaller if screen height is short */
+        .rose {
+            font-size: 20px;
         }
     }
 </style>
 </head>
 <body>
-    <div class="message">
-        <h1>She said yes… 🌹</h1>
-        <p>
-            and in that moment, my whole world smiled.<br><br>
-            Thank you for choosing me, today and always.<br><br>
-            <strong>I love you endlessly.</strong> ❤️
-        </p>
-    </div>
 
-    <div class="image-container">
-        <img src="Image1.jpeg" alt="Us Image 1">
-    </div>
+<div class="message">
+    <h1>She said yes… 🌹</h1>
+    <p>
+        and in that moment, my whole world smiled.<br><br>
+        Thank you for choosing me, today and always.<br><br>
+        <strong>I love you endlessly.</strong> ❤️
+    </p>
+</div>
 
-    <audio autoplay loop controls>
-        <source src="LoveOnTheBrain.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+<div class="image-container">
+    <img src="Image1.jpeg" alt="Us Image 1">
+</div>
+
+<audio autoplay loop controls>
+    <source src="LoveOnTheBrain.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
 <script>
 function createRose() {
@@ -134,5 +123,6 @@ function createRose() {
 }
 setInterval(createRose, 300);
 </script>
+
 </body>
 </html>
