@@ -3,64 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine?</title>
+<title>Valentine Proposal</title>
 <style>
     body {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Arial', sans-serif;
-        background: linear-gradient(to bottom right, #b19cd9, #a2d5f2);
-        overflow: hidden;
-    }
-    .container {
+        margin: 0;
+        padding: 20px;
+        font-family: 'Georgia', serif;
+        background: #f0e5ff;
+        color: #4a0e6a;
         text-align: center;
+        min-height: 100vh;
+        overflow-y: auto; /* allow scrolling */
     }
+
     h1 {
         font-size: 2rem;
-        margin-bottom: 30px;
-        color: #4a0e6a;
+        margin: 40px 0 30px 0;
     }
-    button {
+
+    .buttons-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 200px; /* allow scrolling */
+        position: relative;
+    }
+
+    .btn {
+        padding: 15px 30px;
         font-size: 1.2rem;
-        padding: 12px 25px;
         border: none;
-        border-radius: 25px;
+        border-radius: 10px;
         cursor: pointer;
-        margin: 10px;
-    }
-    #yes {
-        background-color: #9b1b30;
         color: white;
+        transition: all 0.2s ease;
+        position: relative;
     }
-    #no {
-        background-color: #ccc;
-        position: absolute;
+
+    .btn.yes {
+        background-color: #87cefa; /* baby blue */
+    }
+
+    .btn.no {
+        background-color: #b19cd9; /* soft purple */
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+        .btn {
+            font-size: 1rem;
+            padding: 12px 25px;
+        }
     }
 </style>
 </head>
 <body>
-<div class="container">
-    <h1>Chane, will you be my Valentine? 💜</h1>
-    <button id="yes" onclick="goYes()">Yes</button>
-    <button id="no">No</button>
-</div>
-<script>
-const noBtn = document.getElementById("no");
-noBtn.addEventListener("mouseover", moveButton);
-noBtn.addEventListener("touchstart", moveButton);
 
-function moveButton() {
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 50);
+<h1>Will you be my Valentine, Chane? ❤️</h1>
+
+<div class="buttons-container">
+    <button class="btn yes" onclick="window.location.href='yes.html'">Yes</button>
+    <button class="btn no">No</button>
+</div>
+
+<script>
+const noBtn = document.querySelector('.btn.no');
+
+noBtn.addEventListener('mouseenter', () => {
+    // move the "No" button randomly within the viewport
+    const vw = window.innerWidth - noBtn.offsetWidth;
+    const vh = window.innerHeight - noBtn.offsetHeight;
+
+    const x = Math.random() * vw;
+    const y = Math.random() * vh;
+
+    noBtn.style.position = 'fixed';
     noBtn.style.left = `${x}px`;
     noBtn.style.top = `${y}px`;
-}
-
-function goYes() {
-    window.location.href = "yes.html";
-}
+});
 </script>
+
 </body>
 </html>
