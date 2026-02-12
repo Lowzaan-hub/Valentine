@@ -113,6 +113,7 @@
 </audio>
 
 <script>
+// Create falling roses
 function createRose() {
     const rose = document.createElement("div");
     rose.classList.add("rose");
@@ -124,14 +125,23 @@ function createRose() {
 }
 setInterval(createRose, 300);
 
-// Ensure autoplay works on mobile
+// Autoplay music immediately if ?autoplay=1 is in URL
 window.addEventListener('load', () => {
+    const params = new URLSearchParams(window.location.search);
     const music = document.getElementById('bgMusic');
-    music.play().catch(() => {
-        console.log("Autoplay failed – user interaction may be needed.");
-    });
+
+    if (params.get('autoplay') === '1') {
+        // Try to play
+        music.play().catch(() => {
+            // If blocked, wait for first tap/click
+            document.body.addEventListener('click', () => {
+                music.play();
+            }, { once: true });
+        });
+    }
 });
 </script>
 
 </body>
 </html>
+
