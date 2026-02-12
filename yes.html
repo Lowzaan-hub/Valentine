@@ -5,41 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>She Said Yes</title>
 <style>
-    body {
+    html, body {
         margin: 0;
-        height: 100vh;
+        padding: 0;
+        height: 100%;
+        overflow: hidden; /* no scrolling */
         background: #f0e5ff;
         font-family: 'Georgia', serif;
         color: #4a0e6a;
+    }
+
+    body {
         display: flex;
         flex-direction: column;
-        justify-content: space-between; /* space between message, image, audio */
+        justify-content: space-between;
         align-items: center;
-        overflow: hidden;
         text-align: center;
+        padding: 0 10px;
     }
 
     .message {
-        padding: 20px;
+        padding: 10px 0;
         max-width: 90%;
-        z-index: 10;
+        flex-shrink: 0;
     }
 
     h1 {
-        font-size: 2rem;
-        margin-bottom: 20px;
+        font-size: 1.8rem;
+        margin-bottom: 10px;
     }
 
     p {
-        font-size: 1.2rem;
-        line-height: 1.6;
+        font-size: 1rem;
+        line-height: 1.4;
     }
 
     .rose {
         position: fixed;
         top: -50px;
-        font-size: 24px;
+        font-size: 20px;
         animation: fall linear infinite;
+        pointer-events: none; /* roses won’t block clicks */
     }
 
     @keyframes fall {
@@ -50,28 +56,50 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-grow: 1; /* takes remaining vertical space */
+        flex-grow: 1;
         width: 100%;
+        padding: 5px;
     }
 
     .image-container img {
-        max-width: 80%;
-        width: auto;
+        max-width: 90%;
+        max-height: 100%;
         border-radius: 15px;
         opacity: 0;
         animation: fadeFloat 3s forwards;
+        object-fit: contain; /* ensures image scales without cropping */
     }
 
     @keyframes fadeFloat {
-        0% { opacity: 0; transform: translateY(20px); }
+        0% { opacity: 0; transform: translateY(10px); }
         100% { opacity: 1; transform: translateY(0); }
     }
 
     audio {
-        margin-bottom: 20px;
-        width: 80%;
-        max-width: 400px;
+        margin-bottom: 10px;
+        width: 90%;
+        max-width: 350px;
         border-radius: 10px;
+        flex-shrink: 0;
+    }
+
+    /* Mobile-specific tweaks */
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+        p {
+            font-size: 0.9rem;
+        }
+        audio {
+            width: 95%;
+        }
+    }
+
+    @media (max-height: 600px) {
+        .image-container img {
+            max-height: 50vh; /* make image smaller if screen height is short */
+        }
     }
 </style>
 </head>
@@ -89,7 +117,6 @@
         <img src="Image1.jpeg" alt="Us Image 1">
     </div>
 
-    <!-- Audio will autoplay and loop -->
     <audio autoplay loop controls>
         <source src="LoveOnTheBrain.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -109,4 +136,5 @@ setInterval(createRose, 300);
 </script>
 </body>
 </html>
+
 
