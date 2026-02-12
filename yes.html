@@ -52,12 +52,10 @@
         0% { opacity: 0; transform: translateY(20px); }
         100% { opacity: 1; transform: translateY(0); }
     }
-    iframe {
+    audio {
         margin-top: 20px;
-        border: none;
         width: 80%;
         max-width: 400px;
-        height: 80px;
         border-radius: 10px;
     }
 </style>
@@ -74,7 +72,11 @@
         <img src="Image1.jpeg" alt="Us Image 1">
         <img src="Image2.jpeg" alt="Us Image 2">
     </div>
-    <iframe src="https://www.youtube.com/embed/0VjsYf46zy4?autoplay=1&loop=1&playlist=0VjsYf46zy4"></iframe>
+    <!-- Audio will autoplay and loop -->
+    <audio autoplay loop controls>
+        <source src="LoveOnTheBrain.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 </div>
 <script>
 function createRose() {
@@ -90,5 +92,3 @@ setInterval(createRose, 300);
 </script>
 </body>
 </html>
-
-
