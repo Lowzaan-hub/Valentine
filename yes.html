@@ -13,7 +13,7 @@
         background: #f0e5ff;
         color: #4a0e6a;
         text-align: center;
-        overflow-y: auto; /* allow scrolling */
+        overflow-y: auto; /* enable scrolling */
     }
 
     .message {
@@ -94,9 +94,9 @@
 <body>
 
 <div class="message">
-    <h1>She said yes… 🌹</h1>
+    <h1>She said yes 🌹</h1>
     <p>
-        and in that moment, my whole world smiled.<br><br>
+        And in that moment, my whole world smiled.<br><br>
         Thank you for choosing me, today and always.<br><br>
         <strong>I love you endlessly.</strong> ❤️
     </p>
@@ -106,8 +106,9 @@
     <img src="Image1.jpeg" alt="Us Image 1">
 </div>
 
-<audio autoplay loop controls>
-    <source src="LoveOnTheBrain.mp3" type="audio/mpeg">
+<!-- Background music -->
+<audio id="bgMusic" autoplay loop>
+    <source src="rihannaloveonthebrain.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
@@ -122,6 +123,14 @@ function createRose() {
     setTimeout(() => { rose.remove(); }, 8000);
 }
 setInterval(createRose, 300);
+
+// Ensure autoplay works on mobile
+window.addEventListener('load', () => {
+    const music = document.getElementById('bgMusic');
+    music.play().catch(() => {
+        console.log("Autoplay failed – user interaction may be needed.");
+    });
+});
 </script>
 
 </body>
